@@ -1,5 +1,5 @@
 
-name: Test_build
+name: Test Build
 on:
   workflow_dispatch:
 
