@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "67d91bc7-aa8b-4727-aad5-9abcb298ed08",
+		"_postman_id": "152c1c18-3b29-42ff-a3a1-f79ba6dd0eba",
 		"name": "store",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "18317683"
+		"_exporter_id": "22853741"
 	},
 	"item": [
 		{
 			"name": "Products",
 			"item": [
 				{
-					"name": "List products",
+					"name": "List products 0",
 					"event": [
 						{
 							"listen": "test",
@@ -24,7 +24,96 @@
 									"});\r",
 									"pm.test(\"Content-Type is present\", function () {\r",
 									"    pm.response.to.have.header(\"Content-Type\");\r",
-									"});"
+									"});\r",
+									"const schema = {\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"}\r",
+									"pm.test('Validating schema', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -47,6 +136,29 @@
 				},
 				{
 					"name": "Get product by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonResp = pm.response.json();\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test('Content is valid', () => {\r",
+									"    pm.expect(jsonResp.name).to.be.eql('apple');\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -65,6 +177,25 @@
 				},
 				{
 					"name": "Create product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -90,7 +221,170 @@
 					"response": []
 				},
 				{
+					"name": "List products 1 Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"// pm.test(\"Status code is not 200\", function () {\r",
+									"//     pm.response.to.not.have.status(200);\r",
+									"// });\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"const schema = {\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"}\r",
+									"pm.test('Validating schema', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"// var result;\r",
+									"// var name;\r",
+									"// pm.test ('Should contain orange', function () {\r",
+									"//     let jsonResp = pm.response.json();\r",
+									"//     jsonResp.forEach(function(e){\r",
+									"//         var name = e.name;\r",
+									"//     })\r",
+									"//     console.log(name);\r",
+									"//     for( i=0; i < name.length; i++) {\r",
+									"//         if(pm.expect(jsonResp[i]).to.include('orange')) {\r",
+									"//             result = true;\r",
+									"//         }\r",
+									"//         else{\r",
+									"//             result = false;\r",
+									"//             break;\r",
+									"//         }\r",
+									"//     }\r",
+									"//     pm.expect(result).to.be.true;\r",
+									"// })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -116,7 +410,155 @@
 					"response": []
 				},
 				{
+					"name": "List products 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonResp = pm.response.json();\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"const schema = {\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"price\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"sku\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"description\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"name\",\r",
+									"        \"price\",\r",
+									"        \"sku\",\r",
+									"        \"description\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"}\r",
+									"pm.test('Validating schema', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"// pm.test('Should not contain orange', () => {\r",
+									"//     pm.expect(jsonResp.name).to.not.include('orangee');\r",
+									"// })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Remove product by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -132,222 +574,42 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Orders",
-			"item": [
+				},
 				{
-					"name": "List orders",
+					"name": "List products 3 Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// pm.test('Product list is empty', () => {\r",
+									"//     let jsonResp = pm.response.json();\r",
+									"//     pm.expect(jsonResp).to.be.empty;\r",
+									"// })"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/orders",
+							"raw": "{{baseUrl}}/products",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"orders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get order by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/orders/3",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"orders",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create order",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"order5\",\r\n    \"sku\": 123425445656765\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/orders",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"orders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update order",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"order5\",\r\n    \"sku\": 123425445656765\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/orders",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"orders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Remove order by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/orders/4",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"orders",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "List users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get user by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/3",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create user",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Dream\",\r\n    \"lastName\": \"Real\",\r\n    \"email\": \"dream.real@gmail.com\",\r\n    \"dateOfBirth\": \"2001-10-99\",\r\n    \"emailVerified\": true,\r\n    \"signUpDate\": \"2019-08-24\",\r\n    \"status\": \"active\",\r\n    \"level\": \"lord\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update user",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Ilon\",\r\n    \"lastName\": \"Mask\",\r\n    \"email\": \"ilon.mask@gmail.com\",\r\n    \"dateOfBirth\": \"2001-10-99\",\r\n    \"emailVerified\": true,\r\n    \"signUpDate\": \"2019-08-24\",\r\n    \"status\": \"active\",\r\n    \"level\": \"lord\",\r\n    \"id\": 10\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Remove user by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/10",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								"10"
+								"products"
 							]
 						}
 					},
