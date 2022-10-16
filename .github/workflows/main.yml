@@ -1,4 +1,3 @@
-
 name: Test Build
 on:
   workflow_dispatch:
@@ -24,7 +23,7 @@ jobs:
         run: mkdir -p testResults
 
       - name: Run POSTMAN collection
-        if: always()
+        if: failure()
         run: |
           newman run petstore.collection.json htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
         
