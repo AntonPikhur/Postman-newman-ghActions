@@ -21,17 +21,18 @@ jobs:
         run: mkdir -p testResults
 
       - name: Run POSTMAN collection
-        if: failure()
         run: newman run petstore.collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
         
       - name: Output the run Details
         uses: actions/upload-artifact@v3.1.0
+        if: always()
         with:
           name: RunReports
           path: testResults
 
       - name: Deploy report
         uses: JamesIves/github-pages-deploy-action@v4.4.0
+        if: always()
         with:
           branch: gh-pages
           folder: testResults
