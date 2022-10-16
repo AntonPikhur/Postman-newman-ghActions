@@ -9,10 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Node
-        uses: actions/setup-node@v3.5.0
-        with:
-          node-version: '18.6.0'
+      - name: Setup Node.js environment
+      - uses: actions/setup-node@v3.5.1
 
       - name: Install newman
         run: |
@@ -23,9 +21,9 @@ jobs:
         run: mkdir -p testResults
 
       - name: Run POSTMAN collection
-        if: failure()
+        if: always()
         run: |
-          newman run petstore.collection.json htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          newman run petstore.collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
         
       - name: Output the run Details
         uses: actions/upload-artifact@v2
