@@ -22,16 +22,6 @@ products:
     sku: 123321123
     description: wouh
     id: 5
-  - name: orange
-    price: 8
-    sku: 123321123
-    description: wouh
-    id: 5
-  - name: orange
-    price: 8
-    sku: 123321123
-    description: wouh
-    id: 6
 orders:
   - id: 1
     name: order1
