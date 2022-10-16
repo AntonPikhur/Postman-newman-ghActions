@@ -26,7 +26,6 @@ jobs:
         
       - name: Output the run Details
         uses: actions/upload-artifact@v3.1.0
-        if: failure()
         with:
           name: RunReports
           path: testResults
